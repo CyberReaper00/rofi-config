@@ -1,0 +1,116 @@
+// https://coolors.co was used to test color combinations
+// you can use that if you want to create a new theme
+
+// I have kept this config as minimal as i possibly could
+// and in doing so, after many iterations, i have arrived at
+// the final system, two colors to change the look of the
+// entire thing - bg | unsel-item - all you need to do to
+// customize this is change those two colors nothing else
+// is necessary, but of course, if you wish, you can go
+// through the settings, see how things work and change them
+// as you see fit
+
+* { // global settings
+
+	// font settings - name [type] thickness size
+    font: "Cascadia Code Bold 14";
+
+	// variables for top module
+    fg: #FFFFFFD0;			// light-color	| selected text
+	alt-fg: #FFFFFF22;		// muted-color	| unselected text
+    bg: #2D2D2A;			// dark-color	| window background
+
+	// variables for list items
+    sel-item:	#546A76;	// light-color	| selected list item
+    unsel-item: @bg;		// dark-color	| unselected list item and outer border
+	list-border: 0px;
+
+	// global additions
+    padding: 10;
+}
+
+// the modes that will appear in rofi
+configuration
+	{ modes: [ drun, keys, ssh ]; }
+
+// the configuration for the main rofi window
+window {
+    border: 4px;
+    padding: 0;
+    border-color: @sel-item;
+    border-radius: 0px;
+    background-color: @bg;
+	width: 30%;
+}
+
+// all the text that isnt a part of the list
+prompt, num-rows, num-filtered-rows, inputbar, entry
+	{ text-color: #FFFFFFD0; }
+
+num-rows { margin: 0px -30px 0px 0px; }
+
+// the shows the current rofi mode on the top left
+// this can be set to false to remove the mode name
+prompt { enabled: true; }
+
+// this adds text in between the mode name and the search bar
+// it is currently set to just put some spacing in between the two
+// if you want to add something then you can add anything by writing
+// it in the '' below
+textbox-prompt-colon { str: ''; }
+
+// The search bar
+inputbar {
+    padding: 10;
+    background-color: @bg;
+	margin: 4px 20px 0px 20px;
+}
+
+// The text in the search bar
+entry {
+    placeholder: "Search here...";
+	placeholder-color: #ffffff44;
+	border: 0px 0px 2px 0px;
+	border-color: #FFFFFF33;
+}
+
+// List settings
+listview {
+    lines: 10;
+    spacing: 0;
+    columns: 1;
+    scrollbar: false;
+    background-color: @bg;
+	border: 0;
+}
+
+// all list items
+element {
+    padding: 8 4 8;
+	border-radius: 0px;
+}
+
+// selected list items
+element selected.normal {
+    border: @list-border;
+    text-color: @fg;
+    border-color: @fg;
+    background-color: @sel-item;
+}
+
+// unselected list items
+element normal.normal {
+    border: @list-border;
+    text-color: @alt-fg;
+    border-color: @bg;
+    background-color: @unsel-item;
+}
+
+// other unselected list items
+// i dont know why but there are two types
+element alternate.normal {
+    border: @list-border;
+    text-color: @alt-fg;
+    border-color: @bg;
+    background-color: @unsel-item;
+}
